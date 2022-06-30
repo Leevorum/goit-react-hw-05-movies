@@ -13,3 +13,8 @@
 .listItem:not(:first-child) {
   margin-left: 10px;
 }
+.movieImage {
+  display: block;
+  height: 600px;
+  width: 400px;
+}

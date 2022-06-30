@@ -11,7 +11,11 @@ export default function MovieCard({ movie }) {
 
   return (
     <div className={s.movieWrapper}>
-      <img src={image !== noImage ? image : logo} alt="" />
+      <img
+        src={image !== noImage ? image : logo}
+        alt=""
+        className={s.movieImage}
+      />
       <div className={s.movieDescription}>
         <h2>{title}</h2>
         <p>User Score {useScore}%</p>
