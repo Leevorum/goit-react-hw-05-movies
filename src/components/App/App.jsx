@@ -1,11 +1,5 @@
-import React, { useEffect, Suspense, lazy } from 'react';
-import {
-  Routes,
-  Route,
-  NavLink,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import s from '../App/app.module.css';
 
 const HomePage = lazy(
@@ -26,17 +20,6 @@ const Cast = lazy(
 );
 
 export function App() {
-  const location = useLocation();
-  // const navigate = useNavigate();
-
-  console.log(location);
-  //Default homepage
-  // useEffect(() => {
-  //   if (location.pathname === '/goit-react-hw-05-movies') {
-  //     navigate('/', { replace: true });
-  //   }
-  // }, [location.pathname, navigate]);
-
   return (
     <div className={s.wrapper}>
       <nav className={s.navigation}>
