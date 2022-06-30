@@ -1,74 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
-import ContactForm from 'components/ContactForm/ContactForm';
-import Filter from 'components/Filter/Filter';
-import ContactList from 'components/ContactList/ContactList';
-import Section from 'components/Section/Section';
+import React, { useEffect, Suspense, lazy } from 'react';
+import {
+  Routes,
+  Route,
+  NavLink,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
+import s from '../App/app.module.css';
+
+const HomePage = lazy(
+  () => import('../../pages/HomePage') /* webpackChunkName: "HomePage" */,
+);
+const MovieDetails = lazy(
+  () =>
+    import('../../pages/MovieDetails') /* webpackChunkName: "MovieDetails" */,
+);
+const SearchMovies = lazy(
+  () => import('pages/SearchMovies') /* webpackChunkName: "SearchMovies" */,
+);
+const Reviews = lazy(
+  () => import('components/Reviews/Reviews') /* webpackChunkName: "Reviews" */,
+);
+const Cast = lazy(
+  () => import('components/Cast/Cast') /* webpackChunkName: "Cast" */,
+);
 
 export function App() {
-  const localContacts = localStorage.getItem('contacts');
-  const parseContacts = JSON.parse(localContacts);
-  const [contacts, setContacts] = useState(() => {
-    if (parseContacts) {
-      return parseContacts;
-    }
-    return [];
-  });
-  const [filter, setFilter] = useState('');
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  //Add contacts to the state
-  const handleChange = evt => {
-    setFilter(evt.target.value);
-  };
-
-  //Add contacts
-  const handleAddContact = data => {
-    const existContact = contacts.filter(contact => {
-      return contact.name.toLowerCase().includes(data.name.toLowerCase());
-    });
-
-    //If the name is in the contact list, throw a notification and cancel the code execution
-    if (existContact.length > 0) {
-      alert(`${data.name}, is already in your contacts`);
-      return;
-    }
-
-    //Add an ID to a contact
-    const id = nanoid();
-    setContacts([
-      ...contacts,
-      { name: data.name, id: id, number: data.number },
-    ]);
-  };
-
-  //Delete a contact with ID
-  const deleteContact = contactId => {
-    //Return a new state without contact
-
-    setContacts(contacts.filter(contact => contact.id !== contactId));
-  };
-
-  //Add initial contacts from LocalStorage
+  //Default homepage
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  //Filters
-  const toLowerCaseFilter = filter.toLowerCase();
-  const filteredState = contacts.filter(contact => {
-    return contact.name.toLowerCase().includes(toLowerCaseFilter);
-  });
+    if (location.pathname === '/goit-react-hw-05-movies') {
+      navigate('/', { replace: true });
+    }
+  }, [location.pathname, navigate]);
 
   return (
-    <div>
-      <Section title="Phonebook" border="1px solid">
-        <ContactForm onSubmit={handleAddContact} />
-      </Section>
-
-      <Section title="Contacts">
-        <Filter value={filter} onChange={handleChange} />
-        <ContactList filteredState={filteredState} onDelete={deleteContact} />
-      </Section>
+    <div className={s.wrapper}>
+      <nav className={s.navigation}>
+        <NavLink to="/">HOME</NavLink>
+        <NavLink to="/movies" className={s.navigationItem}>
+          MOVIES
+        </NavLink>
+      </nav>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/movies/" element={<SearchMovies />} />
+          <Route exact path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }

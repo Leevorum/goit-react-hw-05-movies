@@ -1,0 +1,16 @@
+.actorsWrapper {
+  max-width: 1200px;
+}
+
+.actorsList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+.listItem {
+  margin-bottom: 20px;
+}
+.listItem:not(:nth-child(5n + 1)) {
+  margin-left: 20px;
+}

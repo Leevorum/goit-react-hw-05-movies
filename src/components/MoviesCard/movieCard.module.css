@@ -1,0 +1,15 @@
+.movieWrapper {
+  display: flex;
+  margin-top: 15px;
+}
+.movieDescription {
+  margin-left: 25px;
+}
+.genresList {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.listItem:not(:first-child) {
+  margin-left: 10px;
+}
