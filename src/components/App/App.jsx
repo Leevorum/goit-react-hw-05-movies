@@ -1,5 +1,11 @@
-import React, { Suspense, lazy } from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import React, { useEffect, Suspense, lazy } from 'react';
+import {
+  Routes,
+  Route,
+  NavLink,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import s from '../App/app.module.css';
 
 const HomePage = lazy(
@@ -20,6 +26,17 @@ const Cast = lazy(
 );
 
 export function App() {
+  const location = useLocation();
+  // const navigate = useNavigate();
+
+  console.log(location);
+  //Default homepage
+  // useEffect(() => {
+  //   if (location.pathname === '/goit-react-hw-05-movies') {
+  //     navigate('/', { replace: true });
+  //   }
+  // }, [location.pathname, navigate]);
+
   return (
     <div className={s.wrapper}>
       <nav className={s.navigation}>
@@ -30,21 +47,20 @@ export function App() {
       </nav>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route exact path="/" element={<HomePage />}>
-            <Route exact path="/movies/" element={<SearchMovies />} />
-            <Route exact path="/movies/:movieId" element={<MovieDetails />}>
-              <Route exact path="cast" element={<Cast />} />
-              <Route exact path="reviews" element={<Reviews />} />
-            </Route>
-            <Route
-              path="*"
-              element={
-                <div>
-                  <h2>404 Page not found</h2>
-                </div>
-              }
-            />
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/movies/" element={<SearchMovies />} />
+          <Route exact path="/movies/:movieId" element={<MovieDetails />}>
+            <Route exact path="cast" element={<Cast />} />
+            <Route exact path="reviews" element={<Reviews />} />
           </Route>
+          <Route
+            path="*"
+            element={
+              <div>
+                <h2>404 Page not found</h2>
+              </div>
+            }
+          />
         </Routes>
       </Suspense>
     </div>
