@@ -3,7 +3,7 @@ import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'service/api-service';
 import MovieCard from 'components/MoviesCard/MovieCard';
 
-export default function MovieDetails(props) {
+export default function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState(false);
@@ -14,14 +14,16 @@ export default function MovieDetails(props) {
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async () => {
-      const moviesResponce = await fetchMovieDetails(movieId);
-      setMovie(moviesResponce.data);
-      setIsLoading(false);
+      try {
+        const moviesResponce = await fetchMovieDetails(movieId);
+        setMovie(moviesResponce.data);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        setFetchError(true);
+      }
     };
-    fetchData().catch(() => {
-      setIsLoading(false);
-      setFetchError(true);
-    });
+    fetchData();
   }, [movieId]);
 
   return (

@@ -1,5 +1,6 @@
 import logo from '../../dummy_image.png';
 import s from './actorCard.module.css';
+import PropTypes from 'prop-types';
 
 const baseUrl = 'https://image.tmdb.org/t/p/w200';
 
@@ -20,3 +21,6 @@ export default function ActorCard({ actor }) {
     </div>
   );
 }
+ActorCard.propTypes = {
+  actor: PropTypes.object.isRequired,
+};

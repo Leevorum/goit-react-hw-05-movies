@@ -11,15 +11,17 @@ export default function Reviews() {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const reviewsData = await fetchReviewsMovieDetails(movieId);
-      if (reviewsData.data.results.length === 0) {
-        return;
+      try {
+        const reviewsData = await fetchReviewsMovieDetails(movieId);
+        if (reviewsData.data.results.length === 0) {
+          return;
+        }
+        setReviews(reviewsData.data.results);
+      } catch (error) {
+        setFetchError(true);
       }
-      setReviews(reviewsData.data.results);
     };
-    fetchReviews().catch(() => {
-      setFetchError(true);
-    });
+    fetchReviews();
   }, [movieId]);
 
   return (

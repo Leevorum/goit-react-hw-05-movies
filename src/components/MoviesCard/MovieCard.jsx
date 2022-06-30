@@ -1,5 +1,6 @@
 import logo from '../../dummy_image.png';
 import s from './movieCard.module.css';
+import PropTypes from 'prop-types';
 
 const baseUrl = 'https://image.tmdb.org/t/p/w400';
 
@@ -33,3 +34,7 @@ export default function MovieCard({ movie }) {
     </div>
   );
 }
+
+MovieCard.propTypes = {
+  movie: PropTypes.object.isRequired,
+};

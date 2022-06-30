@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { searchhMovies } from '../service/api-service';
 
-export default function SearchMovies(props) {
+export default function SearchMovies() {
   const [input, setInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
+  const [fetchError, setFetchError] = useState(false);
   const location = useLocation();
 
   //rewrite searchquery if back from details to search
@@ -18,16 +19,20 @@ export default function SearchMovies(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (searchQuery === '') {
-        return;
+      try {
+        if (searchQuery === '') {
+          return;
+        }
+        const moviesResponce = await searchhMovies(searchQuery);
+        if (moviesResponce.data.results.length === 0) {
+          alert('There is no movie with this name');
+          setMovies([]);
+          return;
+        }
+        setMovies(moviesResponce.data.results);
+      } catch (error) {
+        setFetchError(true);
       }
-      const moviesResponce = await searchhMovies(searchQuery);
-      if (moviesResponce.data.results.length === 0) {
-        alert('There is no movie with this name');
-        setMovies([]);
-        return;
-      }
-      setMovies(moviesResponce.data.results);
     };
     fetchData();
   }, [searchQuery]);
@@ -76,6 +81,7 @@ export default function SearchMovies(props) {
             </li>
           ))}
       </ul>
+      {fetchError && <p>Somthing goes wrong! Let's try again later...</p>}
     </div>
   );
 }

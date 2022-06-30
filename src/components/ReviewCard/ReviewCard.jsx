@@ -1,4 +1,5 @@
 import s from './reviewCard.module.css';
+import PropTypes from 'prop-types';
 
 export default function ReviewCard({ review }) {
   const { author, content } = review;
@@ -9,3 +10,7 @@ export default function ReviewCard({ review }) {
     </div>
   );
 }
+
+ReviewCard.propTypes = {
+  review: PropTypes.object.isRequired,
+};
