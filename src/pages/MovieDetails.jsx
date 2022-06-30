@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'service/api-service';
 import MovieCard from 'components/MoviesCard/MovieCard';
@@ -19,6 +19,7 @@ export default function MovieDetails(props) {
       setIsLoading(false);
     };
     fetchData().catch(() => {
+      setIsLoading(false);
       setFetchError(true);
     });
   }, [movieId]);
@@ -53,7 +54,9 @@ export default function MovieDetails(props) {
           </ul>
         </>
       )}
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
