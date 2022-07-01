@@ -4,12 +4,15 @@
   height: 510px;
 }
 .textWrapper {
+  height: 90px;
   width: 340px;
-  padding-top: 15px;
-  padding-bottom: 25px;
-  background-color: rgba(100, 106, 106, 0.597);
+  padding-top: 10px;
+  /* padding-bottom: 10px; */
+  background-color: rgba(100, 106, 106, 0.4);
 }
 .title {
+  height: 36px;
+  font-weight: 700;
   margin: 0;
   padding: 0;
   margin-left: 10px;
