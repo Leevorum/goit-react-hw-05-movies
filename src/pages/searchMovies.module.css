@@ -9,14 +9,21 @@
 }
 
 .moviesList {
+  display: grid;
+  max-width: calc(100vw - 80px);
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-gap: 10px;
+
+  margin-bottom: 0;
+  padding: 0;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  column-gap: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .listItem {
-  margin-bottom: 20px;
+  /* margin-left: 10px;
+  margin-right: 20px; */
+  /* margin-bottom: 20px; */
 }
 
 .SearchForm {
