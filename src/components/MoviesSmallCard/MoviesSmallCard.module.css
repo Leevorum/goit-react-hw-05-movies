@@ -8,7 +8,7 @@
   width: 340px;
   padding-top: 10px;
   /* padding-bottom: 10px; */
-  background-color: rgba(100, 106, 106, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .title {
   height: 36px;
@@ -16,10 +16,10 @@
   margin: 0;
   padding: 0;
   margin-left: 10px;
-  color: rgb(248, 247, 246);
+  /* color: rgb(248, 247, 246); */
 }
 .score {
-  color: rgb(248, 247, 246);
+  /* color: rgb(248, 247, 246); */
   padding: 0;
   margin: 0;
   margin-left: 10px;
