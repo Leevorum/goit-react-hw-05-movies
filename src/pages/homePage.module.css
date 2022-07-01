@@ -9,9 +9,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  column-gap: 20px;
 }
 .listItem {
-  margin-left: 10px;
-  margin-right: 10px;
   margin-bottom: 20px;
 }

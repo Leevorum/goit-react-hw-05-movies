@@ -13,10 +13,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  column-gap: 10px;
 }
 .listItem {
-  margin-left: 10px;
-  margin-right: 20px;
   margin-bottom: 20px;
 }
 
