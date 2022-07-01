@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 const baseUrl = 'https://image.tmdb.org/t/p/w400';
 
 export default function MovieCard({ movie }) {
-  const { poster_path, title, overview, genres, vote_average } = movie;
-  const image = `${baseUrl}${poster_path}`;
+  const { backdrop_path, title, overview, genres, vote_average } = movie;
+  const image = `${baseUrl}${backdrop_path}`;
   const noImage = 'https://image.tmdb.org/t/p/w400null';
-  const useScore = vote_average * 10;
+  const useScore = Math.round(vote_average * 10);
 
   return (
     <div className={s.movieWrapper}>

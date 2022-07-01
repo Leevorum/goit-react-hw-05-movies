@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { searchhMovies } from '../service/api-service';
+import MoviesSmallCard from 'components/MoviesSmallCard/MoviesSmallCard';
+import s from './searchMovies.module.css';
 
 export default function SearchMovies() {
   const [input, setInput] = useState('');
@@ -68,19 +70,21 @@ export default function SearchMovies() {
           onChange={handleChange}
         />
       </form>
-      <ul>
-        {movies &&
-          movies.map(movie => (
-            <li key={movie.id}>
-              <Link
-                to={`/movies/${movie.id}`}
-                state={{ from: location, searchQuery: searchQuery }}
-              >
-                {movie?.title ?? movie?.name}
-              </Link>
-            </li>
-          ))}
-      </ul>
+      <div className={s.moviesWrapper}>
+        <ul className={s.moviesList}>
+          {movies &&
+            movies.map(movie => (
+              <li key={movie.id} className={s.listItem}>
+                <Link
+                  to={`/movies/${movie.id}`}
+                  state={{ from: location, searchQuery: searchQuery }}
+                >
+                  <MoviesSmallCard movie={movie} />
+                </Link>
+              </li>
+            ))}
+        </ul>
+      </div>
       {fetchError && <p>Somthing goes wrong! Let's try again later...</p>}
     </div>
   );

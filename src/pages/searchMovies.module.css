@@ -1,0 +1,17 @@
+.moviesWrapper {
+  max-width: 2400px;
+}
+
+.moviesList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.listItem {
+  /* border: 1px solid rgb(190, 188, 188); */
+
+  margin-bottom: 20px;
+}
+.listItem:not(:nth-child(6n + 1)) {
+  margin-left: 20px;
+}
