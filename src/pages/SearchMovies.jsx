@@ -54,22 +54,24 @@ export default function SearchMovies() {
 
   return (
     <div>
-      <form className="SearchForm" onSubmit={handleSubmit}>
-        <button type="submit" className="SearchForm-button">
-          <span className="SearchForm-button-label">Search</span>
-        </button>
+      <div className={s.searchWrapper}>
+        <form className={s.SearchForm} onSubmit={handleSubmit}>
+          <button type="submit" className={s.SearchFormButton}>
+            <span className={s.SearchFormButtonLabel}>Search</span>
+          </button>
 
-        <input
-          className="SearchForm-input"
-          name="input"
-          value={input}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movies"
-          onChange={handleChange}
-        />
-      </form>
+          <input
+            className={s.SearchFormInput}
+            name="input"
+            value={input}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search movies"
+            onChange={handleChange}
+          />
+        </form>
+      </div>
       <div className={s.moviesWrapper}>
         <ul className={s.moviesList}>
           {movies &&

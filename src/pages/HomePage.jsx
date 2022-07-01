@@ -25,7 +25,7 @@ export default function HomePage() {
   }, []);
   return (
     <div className={s.moviesWrapper}>
-      {movies && <h1>Trending Today</h1>}
+      {movies && <h1 className={s.pageTitle}>Trending Today</h1>}
       <ul className={s.moviesList}>
         {movies &&
           movies.map(movie => (

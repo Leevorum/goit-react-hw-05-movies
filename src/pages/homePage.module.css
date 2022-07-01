@@ -1,17 +1,17 @@
 .moviesWrapper {
-  max-width: 2400px;
+  margin: 0 auto;
 }
-
+.pageTitle {
+  text-align: center;
+}
 .moviesList {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .listItem {
-  /* border: 1px solid rgb(190, 188, 188); */
-
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 20px;
-}
-.listItem:not(:nth-child(6n + 1)) {
-  margin-left: 20px;
 }

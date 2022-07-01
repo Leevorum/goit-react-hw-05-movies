@@ -1,6 +1,7 @@
 .movieWrapper {
   display: flex;
   margin-top: 15px;
+  /* margin-left: 30px; */
 }
 .movieDescription {
   margin-left: 25px;
