@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { searchhMovies } from '../service/api-service';
+import { searchhMovies } from '../../service/api-service';
 import MoviesSmallCard from 'components/MoviesSmallCard/MoviesSmallCard';
 import s from './searchMovies.module.css';
 

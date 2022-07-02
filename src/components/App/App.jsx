@@ -3,14 +3,20 @@ import { Routes, Route, NavLink } from 'react-router-dom';
 import s from '../App/app.module.css';
 
 const HomePage = lazy(
-  () => import('../../pages/HomePage') /* webpackChunkName: "HomePage" */,
+  () =>
+    import('../../pages/HomePage/HomePage') /* webpackChunkName: "HomePage" */,
 );
 const MovieDetails = lazy(
   () =>
-    import('../../pages/MovieDetails') /* webpackChunkName: "MovieDetails" */,
+    import(
+      '../../pages/MovieDetails/MovieDetails'
+    ) /* webpackChunkName: "MovieDetails" */,
 );
 const SearchMovies = lazy(
-  () => import('pages/SearchMovies') /* webpackChunkName: "SearchMovies" */,
+  () =>
+    import(
+      'pages/SearchMovies/SearchMovies'
+    ) /* webpackChunkName: "SearchMovies" */,
 );
 const Reviews = lazy(
   () => import('components/Reviews/Reviews') /* webpackChunkName: "Reviews" */,
