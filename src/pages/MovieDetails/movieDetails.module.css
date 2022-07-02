@@ -1,6 +1,37 @@
-.goBack {
+/* .goBack {
+  width: 80px;
   border-radius: 5px;
-}
+  padding: 10px;
+  background-color: aliceblue;
+} */
 .movieCardWrapper {
   margin-left: 40px;
+}
+.additionalInfo {
+  text-align: center;
+  background-color: aliceblue;
+  /* display: block; */
+  width: 80px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.arrow {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 3px solid gray;
+  border-radius: 50%;
+}
+.arrow:after {
+  position: absolute;
+  top: 8px;
+  left: 9px;
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-left: 3px solid gray;
+  border-bottom: 3px solid gray;
+  transform: rotate(45deg);
 }

@@ -29,14 +29,12 @@ export default function MovieDetails() {
 
   return (
     <div className={s.movieCardWrapper}>
-      <button type="button" className={s.goBack}>
-        <Link
-          to={backLinkHref}
-          state={{ searchQuery: location.state?.searchQuery }}
-        >
-          Go back
-        </Link>
-      </button>
+      <Link
+        to={backLinkHref}
+        state={{ searchQuery: location.state?.searchQuery }}
+      >
+        <button type="button" className={s.arrow}></button>
+      </Link>
 
       {isLoading && <p>Data is loading...</p>}
 
@@ -46,13 +44,21 @@ export default function MovieDetails() {
 
       {movie && (
         <>
-          <p>Addition Information</p>
+          <h2>Addition Information</h2>
           <ul>
             <li>
-              <Link to="cast">Cast</Link>
+              <Link to="cast">
+                <button type="button" className={s.additionalInfo}>
+                  Cast
+                </button>
+              </Link>
             </li>
             <li>
-              <Link to="reviews">Reviews</Link>
+              <Link to="reviews">
+                <button type="button" className={s.additionalInfo}>
+                  Reviews
+                </button>
+              </Link>
             </li>
           </ul>
         </>
