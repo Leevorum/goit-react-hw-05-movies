@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { searchhMovies } from '../../service/api-service';
 import MoviesSmallCard from 'components/MoviesSmallCard/MoviesSmallCard';
 import s from './searchMovies.module.css';
@@ -11,13 +11,17 @@ export default function SearchMovies() {
   const [movies, setMovies] = useState([]);
   const [fetchError, setFetchError] = useState(false);
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryInput = searchParams.get('searchquery') ?? '';
 
-  //rewrite searchquery if back from details to search
+  console.log(location);
+  // rewrite searchquery if back from details to search
   useEffect(() => {
-    if (location.state) {
-      setSearchQuery(location.state.searchQuery);
+    if (location.state?.from) {
+      setSearchParams(location.state.from.search);
+      setSearchQuery(queryInput);
     }
-  }, [location.state]);
+  }, [location, queryInput, setSearchParams]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,19 +29,26 @@ export default function SearchMovies() {
         if (searchQuery === '') {
           return;
         }
-        const moviesResponce = await searchhMovies(searchQuery);
-        if (moviesResponce.data.results.length === 0) {
+        const moviesResponse = await searchhMovies(searchQuery);
+        if (moviesResponse.data.results.length === 0) {
           alert('There is no movie with this name');
           setMovies([]);
           return;
         }
-        setMovies(moviesResponce.data.results);
+        setMovies(moviesResponse.data.results);
       } catch (error) {
         setFetchError(true);
       }
     };
+
+    const updateQueryString = name => {
+      const nextParams = name !== '' ? { searchquery: name } : {};
+      setSearchParams(nextParams);
+    };
+
     fetchData();
-  }, [searchQuery]);
+    updateQueryString(searchQuery);
+  }, [queryInput, searchQuery, setSearchParams]);
 
   const handleChange = evt => {
     setInput(evt.target.value);
@@ -77,10 +88,7 @@ export default function SearchMovies() {
           {movies &&
             movies.map(movie => (
               <li key={movie.id} className={s.listItem}>
-                <Link
-                  to={`/movies/${movie.id}`}
-                  state={{ from: location, searchQuery: searchQuery }}
-                >
+                <Link to={`/movies/${movie.id}`} state={{ from: location }}>
                   <MoviesSmallCard movie={movie} />
                 </Link>
               </li>

@@ -1,4 +1,4 @@
-import logo from '../../dummy_image.png';
+import logo from '../images/dummy_image.png';
 import s from './actorCard.module.css';
 import PropTypes from 'prop-types';
 

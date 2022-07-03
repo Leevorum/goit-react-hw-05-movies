@@ -10,14 +10,14 @@ export default function MovieDetails() {
   const [fetchError, setFetchError] = useState(false);
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = location?.state?.from ?? '/';
 
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async () => {
       try {
-        const moviesResponce = await fetchMovieDetails(movieId);
-        setMovie(moviesResponce.data);
+        const moviesResponse = await fetchMovieDetails(movieId);
+        setMovie(moviesResponse.data);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -29,10 +29,7 @@ export default function MovieDetails() {
 
   return (
     <div className={s.movieCardWrapper}>
-      <Link
-        to={backLinkHref}
-        state={{ searchQuery: location.state?.searchQuery }}
-      >
+      <Link to={backLinkHref} state={{ from: backLinkHref }}>
         <button type="button" className={s.arrow}></button>
       </Link>
 
@@ -48,14 +45,14 @@ export default function MovieDetails() {
           <ul>
             <li>
               <Link to="cast">
-                <button type="button" className={s.additionalInfo}>
+                <button type="button" className={s.additionalInfoButton}>
                   Cast
                 </button>
               </Link>
             </li>
             <li>
               <Link to="reviews">
-                <button type="button" className={s.additionalInfo}>
+                <button type="button" className={s.additionalInfoButton}>
                   Reviews
                 </button>
               </Link>

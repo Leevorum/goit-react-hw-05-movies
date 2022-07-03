@@ -12,11 +12,11 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const moviesResponce = await fetchTrendingMovies();
-        if (moviesResponce.data.results.length === 0) {
+        const moviesResponse = await fetchTrendingMovies();
+        if (moviesResponse.data.results.length === 0) {
           return;
         }
-        setMovies(moviesResponce.data.results);
+        setMovies(moviesResponse.data.results);
       } catch (error) {
         setFetchError(true);
       }
