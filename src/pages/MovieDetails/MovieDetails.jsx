@@ -30,7 +30,7 @@ export default function MovieDetails() {
   return (
     <div className={s.movieCardWrapper}>
       <Link to={backLinkHref}>
-        <button type="button" className={s.arrow}></button>
+        <button type="button" className={s.arrow} aria-label="go back"></button>
       </Link>
 
       {isLoading && <p>Data is loading...</p>}

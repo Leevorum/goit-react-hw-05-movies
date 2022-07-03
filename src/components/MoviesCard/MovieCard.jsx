@@ -2,7 +2,7 @@ import logo from '../images/dummy_image.png';
 import s from './movieCard.module.css';
 import PropTypes from 'prop-types';
 
-const baseUrl = 'https://image.tmdb.org/t/p/w400';
+const baseUrl = 'https://image.tmdb.org/t/p/originalgit';
 
 export default function MovieCard({ movie }) {
   const { backdrop_path, title, overview, genres, vote_average } = movie;
