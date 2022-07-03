@@ -13,7 +13,7 @@ export default function MoviesSmallCard({ movie }) {
     <div>
       <img
         src={image !== noImage ? image : logo}
-        alt={movie?.title ?? movie?.namevie}
+        alt={movie?.title ?? movie?.name}
         className={s.image}
       ></img>
       <div className={s.textWrapper}>

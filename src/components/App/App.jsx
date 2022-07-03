@@ -34,7 +34,7 @@ export function App() {
           MOVIES
         </NavLink>
       </nav>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="defaultLoading">Loading...</div>}>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/movies/" element={<SearchMovies />} />

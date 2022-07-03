@@ -29,7 +29,7 @@ export default function MovieDetails() {
 
   return (
     <div className={s.movieCardWrapper}>
-      <Link to={backLinkHref} state={{ from: backLinkHref }}>
+      <Link to={backLinkHref}>
         <button type="button" className={s.arrow}></button>
       </Link>
 

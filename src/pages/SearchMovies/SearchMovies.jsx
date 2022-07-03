@@ -15,6 +15,7 @@ export default function SearchMovies() {
   const queryInput = searchParams.get('searchquery') ?? '';
   // const prevSearch = new URLSearchParams(location.search).get('searchquery');
 
+  // console.log(location);
   // rewrite searchquery if back from details to search
   useEffect(() => {
     if (location.search !== '') {
@@ -52,6 +53,7 @@ export default function SearchMovies() {
 
     const updateQueryString = name => {
       const nextParams = name !== '' ? { searchquery: name } : {};
+
       setSearchParams(nextParams);
     };
 
