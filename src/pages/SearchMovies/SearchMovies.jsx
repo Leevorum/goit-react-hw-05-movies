@@ -13,15 +13,24 @@ export default function SearchMovies() {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const queryInput = searchParams.get('searchquery') ?? '';
-  const prevSearch = new URLSearchParams(location.search).get('searchquery');
+  // const prevSearch = new URLSearchParams(location.search).get('searchquery');
 
   // rewrite searchquery if back from details to search
   useEffect(() => {
-    if (prevSearch !== null) {
-      setSearchParams(prevSearch);
+    if (location.search !== '') {
+      setSearchParams(location.search);
       setSearchQuery(queryInput);
     }
-  }, [prevSearch, queryInput, setSearchParams]);
+  }, [location.search, queryInput, setSearchParams]);
+
+  // rewrite searchquery if back from details to search
+  // useEffect(() => {
+
+  //   if (prevSearch !== null) {
+  //     setSearchParams(prevSearch);
+  //     setSearchQuery(queryInput);
+  //   }
+  // }, [ prevSearch, queryInput, setSearchParams]);
 
   useEffect(() => {
     const fetchData = async () => {
