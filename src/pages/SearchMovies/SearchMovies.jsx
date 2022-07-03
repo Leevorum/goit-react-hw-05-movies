@@ -13,15 +13,15 @@ export default function SearchMovies() {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const queryInput = searchParams.get('searchquery') ?? '';
+  const prevSearch = new URLSearchParams(location.search).get('searchquery');
 
-  console.log(location);
   // rewrite searchquery if back from details to search
   useEffect(() => {
-    if (location.state?.from) {
-      setSearchParams(location.state.from.search);
+    if (prevSearch !== null) {
+      setSearchParams(prevSearch);
       setSearchQuery(queryInput);
     }
-  }, [location, queryInput, setSearchParams]);
+  }, [prevSearch, queryInput, setSearchParams]);
 
   useEffect(() => {
     const fetchData = async () => {
